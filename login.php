@@ -38,7 +38,12 @@ function login($username, $password){
 function is_valid_user($username, $password){
 	$sql = "SELECT * FROM users WHERE username='$username' and password='$password'";
 	$result= mysql_query($sql) or die(mysql_error());
-	return mysql_num_rows($result) == 1;
+	if(mysql_num_rows($result) == 1){
+		$row = mysql_fetch_object($result);
+		$_SESSION["user_id"] = $row->id;
+		return true;
+	}
+	return false;
 }
 
 function show_login_page($error_message=""){

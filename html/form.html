@@ -11,8 +11,8 @@
 <script type="text/javascript" src="./js/view.js"></script>
 <script>
   $(function() {
-    $( "#open_date_picker" ).datepicker();
-    $( "#close_date_picker" ).datepicker();
+    $( "#open_date_picker" ).datepicker({ dateFormat: "yy-mm-dd" });
+    $( "#close_date_picker" ).datepicker({ dateFormat: "yy-mm-dd" });
   });
 </script>
 </head>
@@ -32,9 +32,9 @@
 		<li id="li_6" >
 		  <label class="description" for="campaign">Campaign </label>
 		  <div>
-			  <select class="element select medium" id="campaign" name="element_6"> 
-				  <option value="1" selected="selected" >Global Out Reach-FB,TW,DCF,OSMS</option>
-				  <option value="2" >EMEA-DPS-Tracking</option>
+			  <select class="element select medium" id="campaign" name="campaign"> 
+				  <option value="Global Out Reach-FB,TW,DCF,OSMS" selected="selected" >Global Out Reach-FB,TW,DCF,OSMS</option>
+				  <option value="EMEA-DPS-Tracking" >EMEA-DPS-Tracking</option>
 	  		  </select>
 		  </div> 
 		  </li>
@@ -64,9 +64,9 @@
 		<label class="description" for="case_status">Status </label>
 		<div>
 		<select class="element select medium" id="case_status" name="case_status"> 
-			<option value="1" selected="selected">Pend Working</option>
-			<option value="2" >Resolved Closed</option>
-			<option value="3" >Unresolved Closed 72 hrs no response</option>
+			<option value="Pend Working" selected="selected">Pend Working</option>
+			<option value="Resolved Closed" >Resolved Closed</option>
+			<option value="Unresolved Closed 72 hrs no response" >Unresolved Closed 72 hrs no response</option>
 		</select>
 		</div> 
 		</li>
