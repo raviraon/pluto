@@ -26,6 +26,7 @@ show_form();
 		
 function save_form($campaign, $customer, $fusion_id, $open_date, $status, $closed_date, $comments){
 	$user_id = $_SESSION["user_id"];
+	$user_name = $_SESSION["user"];
 	
 	if($closed_date == ""){
 		$closed_date = "null";
@@ -34,7 +35,7 @@ function save_form($campaign, $customer, $fusion_id, $open_date, $status, $close
 		$closed_date = "'".$closed_date."'";
 	}
 	
-	$sql = "INSERT INTO case_details (user_id, campaign, customer_name, fusion_id, open_date, status, close_date, comments) VALUES (1, '$campaign', '$customer', '$fusion_id', '$open_date', '$status', $closed_date, '$comments')";
+	$sql = "INSERT INTO case_details (user_id, user_name, campaign, customer_name, fusion_id, open_date, status, close_date, comments, updated_by) VALUES (1, '$user_name', '$campaign', '$customer', '$fusion_id', '$open_date', '$status', $closed_date, '$comments', '$user_name')";
 	$result= mysql_query($sql) or die(mysql_error());
 }
 
