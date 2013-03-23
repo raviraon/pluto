@@ -1,7 +1,6 @@
 <?php
 require(__DIR__ . "/lib/dbconnect.php");
 session_start();
-
 if ( $_POST['Login'] ){
 	$db = new Database();
 	$db->connect();
