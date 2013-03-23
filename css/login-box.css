@@ -1,4 +1,61 @@
-	body {background-color:#3e70b3;}
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,span
+small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,button,table,caption,tbody,tfoot,thead,tr,th,td
+{
+	border:0;
+	font-family:inherit;
+	font-size:100%;
+	font-style:inherit;
+	font-weight:inherit;
+	margin:0;
+	outline:0;
+	padding:0;
+	text-align:left;
+}
+
+body
+{
+	background:#252629;
+	color:#1a1a1a;
+	font:14px/26px Arial, Helvetica, sans-serif;
+	letter-spacing:normal;
+	line-height:1;
+}
+
+#header
+{
+	background:url(this) repeat-x #000;
+	background-position:top left;
+	border:solid #fa7c00;
+	border-width:5px 0 0;
+	height:109px;
+	position:relative;
+	width:100%;
+	z-index:1;
+}
+
+#header .logo
+{
+	left:50%;
+	margin-left:-511px;
+	position:absolute;
+	top:15px;
+	z-index:3;
+}
+
+#header
+#logoglow
+{
+	background:url(../images/Logo.png) no-repeat;
+	background-position:0 0;
+	height:109px;
+	left:50%;
+	margin-left:-609px;
+	position:absolute;
+	top:0;
+	width:374px;
+	z-index:2;
+}
+
 #login-box {
 	width:333px;
 	height: 352px;
