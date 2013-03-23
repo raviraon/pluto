@@ -1,7 +1,6 @@
 <?php
 ob_start();
-require("./lib/check_user_logged_in.php");
-
+require(__DIR__ . "/lib/check_user_logged_in.php");
 
 
 $form_errors = array_key_exists('_submit_check',$_POST) ? validate_form() : null;
@@ -14,7 +13,7 @@ if(array_key_exists('form_submitted', $_POST)){
 }
 
 function show_form(){
-	require("./html/form.html");
+	require(__DIR__ . "/html/form.html");
 }
 
 function validate_form(){

@@ -1,5 +1,5 @@
 <?php
-require("./lib/dbconnect.php");
+require(__DIR__ . "/lib/dbconnect.php");
 session_start();
 
 if ( $_POST['Login'] ){
@@ -43,6 +43,6 @@ function is_valid_user($username, $password){
 }
 
 function show_login_page($error_message=""){
-	include('./html/login.html');	
+	include(__DIR__ .'/html/login.html');	
 }
 ?>
