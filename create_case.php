@@ -18,7 +18,7 @@ if( $_POST['submit'] ){
 	$comments = mysql_real_escape_string(stripslashes($_POST['comments']));
 	
 	$case = new CaseObj($campaign, $customer, $fusion_id, $open_date, $status, $closed_date, $comments);
-	validate_form($case);
+	validate_form($customer, $fusion_id, $open_date);
 	save_form($campaign, $customer, $fusion_id, $open_date, $status, $closed_date, $comments);
 }
 
@@ -43,8 +43,24 @@ function show_form($error_message=""){
 	require(__DIR__ . "/html/form.html");
 }
 
-function validate_form($case){
-	return " ";
+function validate_form($customer, $fusion_id, $open_date){
+    $error_message = NULL;
+	
+	if($customer == NULL)
+		$error_message .= "Customer Name : ";
+	
+	if($fusion_id == NULL)
+		$error_message .= "Fusion ID : ";
+
+	if($open_date == NULL)
+		$error_message .= "Open Date  ";
+		
+     if($error_message != NULL)
+		$error_message .= " cannot be empty. ";
+		$error_message = str_replace(":", "/", $error_message);
+		show_form($error_message);
+
+	return;
 }
 
 function process_form(){	
