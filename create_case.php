@@ -20,9 +20,11 @@ if( $_POST['submit'] ){
 	$case = new CaseObj($campaign, $customer, $fusion_id, $open_date, $status, $closed_date, $comments);
 	validate_form($customer, $fusion_id, $open_date);
 	save_form($campaign, $customer, $fusion_id, $open_date, $status, $closed_date, $comments);
+	show_form();
 }
-
-show_form();
+else{
+		show_form();
+}
 		
 function save_form($campaign, $customer, $fusion_id, $open_date, $status, $closed_date, $comments){
 	$user_id = $_SESSION["user_id"];
@@ -58,12 +60,19 @@ function validate_form($customer, $fusion_id, $open_date){
      if($error_message != NULL)
 		$error_message .= " cannot be empty. ";
 		$error_message = str_replace(":", "/", $error_message);
-		show_form($error_message);
 
+	$sql = "SELECT id from case_details where fusion_id = '$fusion_id'";
+	$result= mysql_query($sql) or die(mysql_error());
+	if(mysql_num_rows($result) != 0)
+		$error_message .= " Fusion ID : " . $fusion_id . " already exists"; 
+
+     if($error_message != NULL)
+		show_form($error_message);
+	
 	return;
 }
 
-function process_form(){	
+function done(){	
 	header("Location: show.php");	
 }
 ?>
