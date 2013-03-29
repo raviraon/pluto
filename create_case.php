@@ -4,7 +4,10 @@ session_start();
 require(__DIR__ . "/lib/check_user_logged_in.php");
 require(__DIR__ . "/lib/dbconnect.php");
 require(__DIR__ . "/case.php");
-
+if(!$_POST['submit']) {
+	show_form();
+	exit();
+}
 if( $_POST['submit'] ){
     $db = new Database();
 	$db->connect();
@@ -22,10 +25,11 @@ if( $_POST['submit'] ){
 	save_form($campaign, $customer, $fusion_id, $open_date, $status, $closed_date, $comments);
 	show_form();
 }
-else{
-		show_form();
+
+function show_form($error_message=""){
+	require(__DIR__ . "/html/form.html");
 }
-		
+
 function save_form($campaign, $customer, $fusion_id, $open_date, $status, $closed_date, $comments){
 	$user_id = $_SESSION["user_id"];
 	$user_name = $_SESSION["user"];
@@ -41,9 +45,6 @@ function save_form($campaign, $customer, $fusion_id, $open_date, $status, $close
 	$result= mysql_query($sql) or die(mysql_error());
 }
 
-function show_form($error_message=""){
-	require(__DIR__ . "/html/form.html");
-}
 
 function validate_form($customer, $fusion_id, $open_date){
     $error_message = NULL;
@@ -57,7 +58,7 @@ function validate_form($customer, $fusion_id, $open_date){
 	if($open_date == NULL)
 		$error_message .= "Open Date  ";
 		
-     if($error_message != NULL)
+	if($error_message != NULL)
 		$error_message .= " cannot be empty. ";
 		$error_message = str_replace(":", "/", $error_message);
 
@@ -66,10 +67,10 @@ function validate_form($customer, $fusion_id, $open_date){
 	if(mysql_num_rows($result) != 0)
 		$error_message .= " Fusion ID : " . $fusion_id . " already exists"; 
 
-     if($error_message != NULL)
+     if($error_message != NULL){
 		show_form($error_message);
-	
-	return;
+		exit();
+	}		
 }
 
 function done(){	
