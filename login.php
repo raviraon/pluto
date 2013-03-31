@@ -27,7 +27,7 @@ function login($username, $password){
 		$_SESSION["user"] = $username;
 		$_SESSION['timeout'] = time();
 		
-		header("location:create_case.php");
+		header("location:home.php");
 	}
 	else {
 		$error_message =  "Wrong Username or Password";
