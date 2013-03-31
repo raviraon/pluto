@@ -11,6 +11,6 @@ if(!$_GET['case_id']) {
 $db = new Database();
 $db->connect();
 
-$fusion_id = mysql_real_escape_string(stripslashes($_GET['case_id']));
+$case_id = mysql_real_escape_string(stripslashes($_GET['case_id']));
 
 
