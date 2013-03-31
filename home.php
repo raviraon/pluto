@@ -11,15 +11,16 @@ $sql = "SELECT fusion_id, campaign, customer_name, open_date, close_date, status
 $result = mysql_query($sql) or die(mysql_error());
 show();
 echo '	<div id="form_container">
-<table>';
+	<table>';
 while($row = mysql_fetch_object($result)){
 	echo "<tr> ";
 	foreach($row as $key => $value){
-		if($key == 'fusion_id')
-		{		
+		if($key == 'fusion_id'){		
 			echo "<td> <a href='view_case.php?case_id=$value'> $value </a> </td>";	
 		}
-		echo "<td> <label class='description'>$value </label> </td>";	
+		else{
+			echo "<td> <label class='description'>$value </label> </td>";	
+		}
 	}
 	echo "</tr>";
 }
