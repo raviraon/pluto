@@ -13,7 +13,7 @@ $db = new Database();
 $db->connect();
 $case_id = mysql_real_escape_string(stripslashes($_GET['case_id']));
 
-$sql = "SELECT fusion_id, campaign, customer_name, open_date, close_date, status, created_at, updated_at, comments FROM case_details WHERE fusion_id = '$case_id' ORDER BY updated_at DESC";
+$sql = "SELECT fusion_id, campaign, customer_name, open_date, close_date, status, created_at, updated_at, comments FROM case_details WHERE fusion_id = '$case_id'";
 
 $result = mysql_query($sql) or die(mysql_error());
 if(mysql_num_rows($result) != 0){
