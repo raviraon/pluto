@@ -19,10 +19,13 @@ function search_cases($search_criteria){
 	$sql = "SELECT user_name, fusion_id, campaign, customer_name, open_date, close_date, status, created_at, updated_at FROM case_details WHERE fusion_id LIKE '%$search_criteria%' OR customer_name LIKE '%$search_criteria%' ORDER BY updated_at DESC";
 	
 	$result = mysql_query($sql) or die(mysql_error());
-	return $result;
-	
+	return $result;	
 }
 
+function get_formatted_date($originalDate){
+	$formatted_date = date("m-d-y", strtotime($originalDate));
+	return $formatted_date;
+}
 function update_form($campaign, $customer_name, $fusion_id, $open_date, $status, $closed_date, $comments, $id){
 	$user_name = $_SESSION["user"];
 	
@@ -37,7 +40,8 @@ function update_form($campaign, $customer_name, $fusion_id, $open_date, $status,
 	$result= mysql_query($sql) or die(mysql_error());
 }
 
-function validate_form($customer_name, $fusion_id, $open_date){
+
+function check_for_empty_fields($customer_name, $fusion_id, $open_date){
     $error_message = NULL;
 	
 	if($customer_name == NULL)
@@ -48,13 +52,17 @@ function validate_form($customer_name, $fusion_id, $open_date){
 
 	if($open_date == NULL)
 		$error_message .= "Open Date  ";
-		
+	
 	if($error_message != NULL){
 		$error_message .= " cannot be empty. ";
 		$error_message = str_replace(":", "/", $error_message);
 	}
+	
+	return $error_message;
+}
 
-
+function validate_form($customer_name, $fusion_id, $open_date){
+	$error_message = check_for_empty_fields($customer_name, $fusion_id, $open_date);
 
 	$sql = "SELECT id from case_details where fusion_id = '$fusion_id'";
 	$result= mysql_query($sql) or die(mysql_error());
@@ -63,5 +71,17 @@ function validate_form($customer_name, $fusion_id, $open_date){
 	
 	return $error_message;
 }
+
+function validate_for_during_update($customer_name, $fusion_id, $open_date, $case_unique_id){
+	$error_message = check_for_empty_fields($customer_name, $fusion_id, $open_date);
+
+	$sql = "SELECT id from case_details where fusion_id = '$fusion_id' AND id != $case_unique_id";
+	$result= mysql_query($sql) or die(mysql_error());
+	if(mysql_num_rows($result) != 0)
+		$error_message .= " Fusion ID : " . $fusion_id . " already exists"; 
+	
+	return $error_message;
+}
+
 	
 ?>
