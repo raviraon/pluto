@@ -29,8 +29,6 @@ function update_form($campaign, $customer_name, $fusion_id, $open_date, $status,
 	$result= mysql_query($sql) or die(mysql_error());
 }
 
-
-
 function validate_form($customer_name, $fusion_id, $open_date){
     $error_message = NULL;
 	
@@ -43,9 +41,12 @@ function validate_form($customer_name, $fusion_id, $open_date){
 	if($open_date == NULL)
 		$error_message .= "Open Date  ";
 		
-	if($error_message != NULL)
+	if($error_message != NULL){
 		$error_message .= " cannot be empty. ";
 		$error_message = str_replace(":", "/", $error_message);
+	}
+
+
 
 	$sql = "SELECT id from case_details where fusion_id = '$fusion_id'";
 	$result= mysql_query($sql) or die(mysql_error());
