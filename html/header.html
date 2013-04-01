@@ -9,5 +9,20 @@
          <li class="page_item page-item-52"><a href="" title="Useful Links">Useful Links</a></li>
          <li class="page_item page-item-65"><a href="./html/change_password.html" title="Change Password">Change Password</a></li>
          <li class="page_item page-item-75"><a href="logout.php" title="Log Off">Log Off</a></li>
+		 <li class="page_item page-item-75">
+			 <input type=text name='search' id='search'/> <a href="javascript:RedirectToSearchPage()" title="Search">Search</a>
+		 </li>
       </ul>
+
    </div>
+   
+   <script type="text/javascript">
+   function RedirectToSearchPage()
+   {
+      var input = document.getElementById('search');
+      var value = input ? input.value : '';
+	  if(value !=''){
+	      window.location.href = 'search.php?search=' + escape(value);	  	
+	  }
+   }
+   </script>

@@ -15,6 +15,14 @@ function save_form($campaign, $customer_name, $fusion_id, $open_date, $status, $
 	$result= mysql_query($sql) or die(mysql_error());
 }
 
+function search_cases($search_criteria){
+	$sql = "SELECT user_name, fusion_id, campaign, customer_name, open_date, close_date, status, created_at, updated_at FROM case_details WHERE fusion_id LIKE '%$search_criteria%' OR customer_name LIKE '%$search_criteria%' ORDER BY updated_at DESC";
+	
+	$result = mysql_query($sql) or die(mysql_error());
+	return $result;
+	
+}
+
 function update_form($campaign, $customer_name, $fusion_id, $open_date, $status, $closed_date, $comments, $id){
 	$user_name = $_SESSION["user"];
 	
