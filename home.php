@@ -2,6 +2,7 @@
 session_start();
 require(__DIR__ . "/lib/check_user_logged_in.php");
 require(__DIR__ . "/lib/dbconnect.php");
+require(__DIR__ . "/lib/utils.php");
 
 $current_user_id = $_SESSION['user_id'];
 
@@ -17,6 +18,10 @@ while($row = mysql_fetch_object($result)){
 	foreach($row as $key => $value){
 		if($key == 'fusion_id'){		
 			echo "<td> <a href='view_case.php?case_id=$value'> $value </a> </td>";	
+		}
+		elseif( $key == 'open_date' || $key == 'closed_date'){
+			$formatted_date = format_date($value);
+			echo "<td> <label class='description'> $formatted_date  </label> </td>";				
 		}
 		else{
 			echo "<td> <label class='description'>$value </label> </td>";	

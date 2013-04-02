@@ -22,8 +22,8 @@ function search_cases($search_criteria){
 	return $result;	
 }
 
-function get_formatted_date($originalDate){
-	$formatted_date = date("m-d-y", strtotime($originalDate));
+function format_date($originalDate){
+	$formatted_date = date("d-m-Y", strtotime($originalDate));
 	return $formatted_date;
 }
 function update_form($campaign, $customer_name, $fusion_id, $open_date, $status, $closed_date, $comments, $id){
