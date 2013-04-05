@@ -11,8 +11,9 @@ if(!$_GET['search']) {
 $db = new Database();
 $db->connect();
 $search_criteria = mysql_real_escape_string(stripslashes($_GET['search']));
+$is_wiki = mysql_real_escape_string(stripslashes($_GET['wiki']));
 
-$result = search_cases($search_criteria);
+$result = search_cases($search_criteria, $is_wiki);
 show();
 echo '	<div id="form_container">
 	<table>';
