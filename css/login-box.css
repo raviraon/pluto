@@ -59,9 +59,9 @@ body
 #login-box {
 	width:333px;
 	height: 352px;
-	padding: 58px 76px 0 76px;
+	padding: 65px 76px 0 50px;
 	color: #ebebeb;
-	font: 15px Arial, Helvetica, sans-serif;
+	font: 14px Arial, Helvetica, sans-serif;
 	background: url(../images/login-box-backg.png) no-repeat left top;
 }
 
@@ -73,16 +73,16 @@ body
 	padding:0;
 	margin:0;
 	color: #ebebeb;
-	font: bold 30px "Calibri", Arial;
+	font: bold 25px "Calibri", Arial;
 }
 
 
 #login-box-name {
 	float: left;
 	display:inline;
-	width:80px;
+	width:120px;
 	text-align: right;
-	padding: 14px 10px 0 0;
+	padding: 10px 10px 0 0;
 	margin:0 0 7px 0;
 }
 
@@ -97,14 +97,14 @@ body
 #login-box-field {
 	float: left;
 	display:inline;
-	width:230px;
+	width:200px;
 	margin:0;
-	margin:0 0 7px 0;
+	margin:0 0 10px 0;
 }
 
 
 .form-login  {
-	width: 205px;
+	width: 175px;
 	padding: 10px 4px 6px 3px;
 	border: 1px solid #0d2c52;
 	background-color:#1e4f8a;
