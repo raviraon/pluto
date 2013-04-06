@@ -30,12 +30,18 @@
 					<label class="description" for="campaign">Campaign </label>
 					<div>
 						<select class="element select medium" id="campaign" name="campaign"> 
-							<option  value="Global Out Reach-FB,TW,DCF,OSMS" 
-								<?php if(isset($campaign) && $campaign == 'Global Out Reach-FB,TW,DCF,OSMS'){ echo "selected=selected"; }?>
-							>Global Out Reach-FB,TW,DCF,OSMS</option>
-							<option value="EMEA-DPS-Tracking"  								
-								<?php if(isset($campaign) && $campaign == 'EMEA-DPS-Tracking'){ echo "selected=selected"; } ?> 
-							>EMEA-DPS-Tracking</option>
+							<option  value="Facebook" 
+								<?php if(isset($campaign) && $campaign == 'Facebook'){ echo "selected=selected"; }?>
+							>Facebook</option>
+							<option value="Twitter"  								
+								<?php if(isset($campaign) && $campaign == 'Twitter'){ echo "selected=selected"; } ?> 
+							>Twitter</option>
+							<option value="Dell Community"  								
+								<?php if(isset($campaign) && $campaign == 'Dell Community'){ echo "selected=selected"; } ?> 
+							>Dell Community</option>
+							<option value="Other SM Sites"  								
+								<?php if(isset($campaign) && $campaign == 'Other SM Sites'){ echo "selected=selected"; } ?> 
+							>Other SM Sites</option>
 						</select>
 					</div> 
 				</li>
