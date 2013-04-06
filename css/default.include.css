@@ -14,7 +14,7 @@ small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,
 
 body
 {
-	background:#252629;
+	background:#D3D3D3;
 	color:#1a1a1a;
 	font:14px/26px Arial, Helvetica, sans-serif;
 	letter-spacing:normal;
@@ -69,7 +69,7 @@ span.glow
 ul#navigation
 {
 	list-style:none;
-	margin-right:-502px;
+	margin-right:-600px;
 	position:absolute;
 	right:50%;
 	top:39px;
@@ -95,13 +95,9 @@ ul#navigation a:hover
 {
 	color:#FFF;
 }
-
-ul#navigation li.current_page_item a,ul#navigation li.current_page_ancestor
-a
-{
-	color:#fa7c00;
+ul#navigation li.current_page_item a, ul#navigation li.current_page_ancestor a {
+    color: #FA7C00;
 }
-
 
 h2 a:hover
 {
@@ -125,4 +121,27 @@ p
 	position:absolute;
 	top:115px;
 	width:15px;
+}
+}
+#sidebar div#outline li a {
+    background: none repeat scroll 0 0 #4A4B4F;
+    border-left: 1px solid #424347;
+    border-right: 1px solid #424347;
+    color: #FBFAF6;
+    display: block;
+    font: 14px Arial,Helvetica,sans-serif;
+    height: 20px;
+    margin: 0;
+    padding: 5px 8px 5px 5px;
+    position: relative;
+    text-align: right;
+    text-decoration: none;
+    width: 275px;
+}
+#sidebar div#outline li.current_page_item a {
+    color: #FC7C01;
+    font-weight: bold;
+}
+#sidebar div#outline li a:hover {
+    text-decoration: underline;
 }
