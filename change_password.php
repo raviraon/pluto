@@ -52,6 +52,10 @@ function validate_form($current_password, $new_password, $confirm_password){
 	elseif(strlen($new_password) < 6){
 		$error_msg = "Password should be minimum 6 charecters";		
 	}
+	elseif($current_password == $new_password){
+		$error_msg = "Current and New password cannot be same.";		
+	}
+
 	elseif(!check_current_password($current_password)){
 		$error_msg = "Incorrect password";		
 	}
