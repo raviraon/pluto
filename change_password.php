@@ -1,4 +1,6 @@
 <?php
+// ini_set('display_errors',1); 
+//  error_reporting(E_ALL);
 session_start();
 require(__DIR__ . "/lib/check_user_logged_in.php");
 require(__DIR__ . "/lib/dbconnect.php");
@@ -20,10 +22,23 @@ if( $_POST['Change-Password'] ){
 	if($error_msg != NULL){
 		show_change_password_form($error_msg);
 	}	
-	// else{
-	// 	save_form($campaign, $customer_name, $fusion_id, $open_date, $status, $closed_date, $comments);
-	// 	done();
-	// }
+	else{
+		update_password($new_password);
+		done();
+	}
+}
+
+function update_password($new_password){
+	$id = $_SESSION['user_id'];
+	$sql = "UPDATE users SET password=md5('$new_password') WHERE id=$id";
+	mysql_query($sql) or die(mysql_error());
+}
+
+function check_current_password($password){
+	$id = $_SESSION['user_id'];
+	$sql = "SELECT * FROM users WHERE id=$id AND password=md5('$password')";
+	$result = mysql_query($sql) or die(mysql_error());
+	return mysql_num_rows($result) == 1;
 }
 
 function validate_form($current_password, $new_password, $confirm_password){
@@ -31,14 +46,27 @@ function validate_form($current_password, $new_password, $confirm_password){
 	if(!$current_password || !$new_password || !$confirm_password){
 		$error_msg = "All fields in this page are mandatory";		
 	}
+	elseif($new_password != $confirm_password){
+		$error_msg = "New Password and Confirm Password does not match.";		
+	}
+	elseif(strlen($new_password) < 6){
+		$error_msg = "Password should be minimum 6 charecters";		
+	}
+	elseif(!check_current_password($current_password)){
+		$error_msg = "Incorrect password";		
+	}
 	return $error_msg;
-	// elseif(){
-	// 	
-	// }
 }
+
 
 function show_change_password_form($error_msg=''){
 	require(__DIR__ . "/html/change_password.html");
+}
+
+function done(){
+	$error_message='Successfully updated to new password';
+	header("Location: logout.php");	
+	
 }
 	
 ?>
