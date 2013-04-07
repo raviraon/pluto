@@ -8,7 +8,7 @@
 		<li class="page_item page-item-65"><a href="change_password.php" title="Change Password">Change Password</a></li>
 		<li class="page_item page-item-75"><a href="logout.php" title="Log Off">Log Off</a></li>
 		<li class="page_item page-item-75">
-			<input type=text name='search' id='search' placeholder="Search..."/> 
+			<input type=text name='search' id='search' placeholder="Search..."/>
 			<input type="checkbox"  id='wiki_search' name="wiki_search" value="wiki_search">
 			<label style='color:white'>Wiki Search</label> <br/>
 		</input>
@@ -26,9 +26,8 @@ $('#search').keydown(function () {
 	var value = input ? input.value : '';
 	var url = 'search.php?search=' + escape(value) + '&wiki='+wiki_search;
 	if (keypressed == 13) {
-		window.location.href = url;	  	
+		window.location.href = url;	 
 	}
 });
 });
-
 </script>

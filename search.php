@@ -13,23 +13,37 @@ $db->connect();
 $search_criteria = mysql_real_escape_string(stripslashes($_GET['search']));
 $is_wiki = mysql_real_escape_string(stripslashes($_GET['wiki']));
 
-$result = search_cases($search_criteria, $is_wiki);
+$columns_to_load = '';
+if($is_wiki == 'true'){
+	$columns_to_load = array("name", "description", "data");
+}
+else{
+	$columns_to_load = array("user_name", "fusion_id", "campaign", "customer_name", "open_date", "close_date", "status", "updated_by");
+}
+
+$result = search_cases($search_criteria, $is_wiki, $columns_to_load);
 show();
-echo '	<div id="form_container">
-	<table>';
+
+echo '<table cellpadding="0" cellspacing="0" border="0" class="display" id="example" width="100%"> <thead> <tr>';
+foreach($columns_to_load as $column ){
+	echo "			<th> $column </th>						";
+}
+					
+echo '</tr></thead><tbody>';
+
 while($row = mysql_fetch_object($result)){
-	echo "<tr> ";
+	echo ' <tr class="odd gradeA"> ';
 	foreach($row as $key => $value){
 		if($key == 'fusion_id'){		
 			echo "<td> <a href='view_case.php?case_id=$value'> $value </a> </td>";	
 		}
 		else{
-			echo "<td> <label class='description'>$value </label> </td>";	
+			echo "<td> $value  </td>";	
 		}
 	}
 	echo "</tr>";
 }
-echo '</table></div></body>';
+echo '</tbody></table></div></body>';
 
 function show($errors='', $cases=null){
 	require('./html/home.html');
