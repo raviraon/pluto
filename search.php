@@ -11,6 +11,9 @@ if(!$_GET['search']) {
 $db = new Database();
 $db->connect();
 $search_criteria = mysql_real_escape_string(stripslashes($_GET['search']));
+if(strlen($search_criteria) < 3){
+	header("Location: home.php");		
+}
 $is_wiki = mysql_real_escape_string(stripslashes($_GET['wiki']));
 
 $columns_to_load = '';
