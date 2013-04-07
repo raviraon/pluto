@@ -28,6 +28,9 @@ function search_cases($search_criteria='', $is_wiki='false' ){
 }
 
 function format_date($originalDate){
+	if(!isset($originalDate) || empty($originalDate))
+		return $originalDate;
+		
 	$formatted_date = date("d-m-Y", strtotime($originalDate));
 	return $formatted_date;
 }
@@ -40,8 +43,8 @@ function update_form($campaign, $customer_name, $fusion_id, $open_date, $status,
 	else{
 		$closed_date = "'".$closed_date."'";
 	}
-	
-	$sql = "UPDATE case_details SET campaign='$campaign', customer_name='$customer_name', fusion_id='$fusion_id', open_date='$open_date', status='$status', close_date=$closed_date, comments='$comments', updated_by='$user_name' WHERE id=$id";
+	$current_datetime = date('Y-m-d H:i:s');
+	$sql = "UPDATE case_details SET campaign='$campaign', customer_name='$customer_name', fusion_id='$fusion_id', open_date='$open_date', status='$status', close_date=$closed_date, comments='$comments', updated_by='$user_name', updated_at='$current_datetime' WHERE id=$id";
 	$result= mysql_query($sql) or die(mysql_error());
 }
 
