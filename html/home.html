@@ -1,16 +1,40 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>SMaC Case Tracker </title>
-<link rel="stylesheet" type="text/css" href="./css/view.css" media="all">
-<link rel="stylesheet" type="text/css" href="./css/default.include.css" media="all" />
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-<script type="text/javascript" src="./js/view.js"></script>
-</head>
-<body id="main_body" >
-<?php require("header.html"); ?>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>SMaC Case Tracker </title>
+	<link rel="stylesheet" type="text/css" href="./css/view.css" media="all">
+	<link rel="stylesheet" type="text/css" href="./css/default.include.css" media="all" />
+	<link rel="stylesheet" href="./css/demo_page.css" media="all" />
+	<link rel="stylesheet" href="./css/demo_table.css" media="all" />
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+	<script type="text/javascript" src="./js/view.js"></script>
+	<script type="text/javascript" language="javascript" src="./js/jquery.dataTables.js"></script>
 
+	<script>
+	$(document).ready(function() {
+		$('#example').dataTable();
+	} );
+	</script>
+
+
+</head>
+<body id="dt_example">
+	<div >
+			<?php require("header.html"); ?>
+			<table cellpadding="0" cellspacing="0" border="0" class="display" id="example" width="100%">
+				<thead>
+					<tr>
+						<th>Fusion ID</th>
+						<th>Campaign</th>
+						<th>Customer Name</th>
+						<th>Open Date</th>
+						<th>Close Date</th>
+						<th>Status</th>
+						<th>Created At</th>
+						<th>Updated At</th>
+					</tr>
+				</thead>
+<tbody>
 
