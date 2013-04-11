@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>SMaC Case Tracker </title>
+	<title>SMaC Case Tracker</title>
 	<link rel="stylesheet" type="text/css" href="./css/view.css" media="all">
 	<link rel="stylesheet" type="text/css" href="./css/default.include.css" media="all" />
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+	<link rel="stylesheet" type="text/css" href="./css/jquery-ui.css" media="all" />
+	<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="./js/jquery-ui.js"></script>
 	<script type="text/javascript" src="./js/view.js"></script>
 	<script>
 	$(function() {
@@ -18,7 +18,7 @@
 </head>
 <body id="main_body" >
 
-	<?php require("header.html"); ?>
+	<?php require("header_form.html"); ?>
 
 	<div id="form_container">	
 		<form id="form_594016" class="appnitro"  method="post" >
@@ -27,9 +27,10 @@
 
 			<ul >
 				<li id="li_6" >
-					<label class="description" for="campaign">Campaign </label>
+					<label class="description" for="campaign">Campaign* </label>
 					<div>
 						<select class="element select medium" id="campaign" name="campaign"> 
+							<option value="" selected="selected"></option>
 							<option  value="Facebook" 
 								<?php if(isset($campaign) && $campaign == 'Facebook'){ echo "selected=selected"; }?>
 							>Facebook</option>
@@ -42,6 +43,9 @@
 							<option value="Other SM Sites"  								
 								<?php if(isset($campaign) && $campaign == 'Other SM Sites'){ echo "selected=selected"; } ?> 
 							>Other SM Sites</option>
+							<option  value="EMEA-DPS-Proj" 
+								<?php if(isset($campaign) && $campaign == 'EMEA-DPS-Proj'){ echo "selected=selected"; }?>
+							>EMEA-DPS-Proj</option>
 						</select>
 					</div> 
 				</li>
@@ -75,14 +79,17 @@
 					<div>
 						<select class="element select medium" id="case_status" name="case_status"> 
 							<option value="Pend Working" 
-								<?php if(isset($status) && $status == 'Pend Working'){ echo "selected=selected"; } ?> 
+							<?php if(isset($status) && $status == 'Pend Working'){ echo "selected=selected"; } ?> 
 							>Pend Working</option>
-							<option value="Resolved Closed" 
-							<?php if(isset($status) && $status == 'Resolved Closed'){ echo "selected=selected"; } ?> 
-							>Resolved Closed</option>
-							<option value="Unresolved Closed 72 hrs no response" 
-							<?php if(isset($status) && $status == 'Unresolved Closed 72 hrs no response'){ echo "selected=selected"; } ?> 
-							>Unresolved Closed 72 hrs no response</option>
+							<option value="Close-Resolved" 
+							<?php if(isset($status) && $status == 'Close-Resolved'){ echo "selected=selected"; } ?> 
+							>Close-Resolved</option>
+							<option value="Close-Unresolved, No Response in 72 hrs" 
+							<?php if(isset($status) && $status == 'Close-Unresolved, No Response in 72 hrs'){ echo "selected=selected"; } ?> 
+							>Close-Unresolved, No Response in 72 hrs</option>
+							<option value="Close Unresolved-CST Request Denied" 
+							<?php if(isset($status) && $status == 'Close Unresolved-CST Request Denied'){ echo "selected=selected"; } ?> 
+							>Close Unresolved-CST Request Denied</option>
 						</select>
 					</div> 
 				</li>
@@ -98,7 +105,7 @@
 				<li id="li_5" >
 					<label class="description" for="comments">Comments </label>
 					<div>
-						<textarea id="comments" name="comments" class="element textarea medium"><?php echo $comments; ?></textarea> 
+						<textarea id="comments" name="comments" class="element textarea medium" type="text" maxlength="255"><?php echo $comments; ?></textarea> 
 					</div> 
 				</li>
 				<input type="hidden" name="case_unique_id" value="<?php echo $id; ?>" />

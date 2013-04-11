@@ -7,19 +7,23 @@
 	<link rel="stylesheet" type="text/css" href="./css/default.include.css" media="all" />
 	<link rel="stylesheet" href="./css/demo_page.css" media="all" />
 	<link rel="stylesheet" href="./css/demo_table.css" media="all" />
-	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+	<link rel="stylesheet" href="./css/jquery-ui-1.8.4.custom.css" media="all" />
+	<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="./js/jquery-ui.js"></script>
 	<script type="text/javascript" src="./js/view.js"></script>
 	<script type="text/javascript" language="javascript" src="./js/jquery.dataTables.js"></script>
 
-	<script>
-	$(document).ready(function() {
-		$('#example').dataTable();
-	} );
+	<script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+oTable = $('#example').dataTable({
+"bJQueryUI": true,
+"sPaginationType": "full_numbers"
+});
+} );
 	</script>
 </head>
 
 <body id="dt_example">
 	<div >
-			<?php require("header.html"); ?>
+			<?php require("header_home.html"); ?>
 

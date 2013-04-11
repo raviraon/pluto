@@ -16,9 +16,11 @@ body
 {
 	background:#D3D3D3;
 	color:#1a1a1a;
-	font:14px/26px Arial, Helvetica, sans-serif;
+	font: 80%/1.45em "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
 	letter-spacing:normal;
-	line-height:1;
+
 }
 
 #header
@@ -98,7 +100,9 @@ ul#navigation a:hover
 ul#navigation li.current_page_item a, ul#navigation li.current_page_ancestor a {
     color: #FA7C00;
 }
-
+body.single li.page-item-52 a {
+    color: #FA7C00 !important;
+}
 h2 a:hover
 {
 	border-bottom:1px dotted #080909!important;
@@ -108,9 +112,6 @@ p
 {
 	margin-bottom:10px;
 }
-
-
-
 #shelf ul#hot-pocket-nav
 {
 	display:block;
@@ -121,7 +122,6 @@ p
 	position:absolute;
 	top:115px;
 	width:15px;
-}
 }
 #sidebar div#outline li a {
     background: none repeat scroll 0 0 #4A4B4F;

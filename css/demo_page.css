@@ -7,12 +7,12 @@
 	margin: 0;
 	padding: 0;
 	color: #333;
-	background-color: #fff;
+	background-color: #D3D3D3;
 }
 
 
 #dt_example #container {
-	width: 800px;
+	width: 1400px;
 	margin: 30px auto;
 	padding: 0;
 }
@@ -119,4 +119,8 @@
 	-webkit-border-radius: 3px;
 	   -moz-border-radius: 3px;
 	        border-radius: 3px;
+}
+
+#dt_example div.syntaxhighlighter code {
+	padding: 0 !important;
 }

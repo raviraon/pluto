@@ -11,7 +11,7 @@ $current_user_id = $_SESSION['user_id'];
 
 $db = new Database();
 $db->connect();
-$sql = "SELECT fusion_id, campaign, customer_name, open_date, close_date, status, created_at, updated_at FROM case_details WHERE user_id = $current_user_id ORDER BY updated_at DESC";
+$sql = "SELECT fusion_id, campaign, customer_name, open_date, close_date, status FROM case_details WHERE user_id = $current_user_id ORDER BY updated_at DESC";
 $result = mysql_query($sql) or die(mysql_error());
 show();
 
@@ -24,9 +24,7 @@ echo '			<table cellpadding="0" cellspacing="0" border="0" class="display" id="e
 						<th>Open Date</th>
 						<th>Close Date</th>
 						<th>Status</th>
-						<th>Created At</th>
-						<th>Updated At</th>
-					</tr>
+						</tr>
 				</thead>
 <tbody>
 ';
