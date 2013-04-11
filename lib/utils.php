@@ -51,11 +51,14 @@ function update_form($campaign, $customer_name, $fusion_id, $open_date, $status,
 }
 
 
-function check_for_empty_fields($customer_name, $fusion_id, $open_date){
+function check_for_empty_fields($customer_name, $fusion_id, $open_date, $campaign){
     $error_message = NULL;
 	
 	if($customer_name == NULL)
 		$error_message .= "Customer Name : ";
+
+	if($campaign == NULL)
+		$error_message .= "Campaign : ";
 	
 	if($fusion_id == NULL)
 		$error_message .= "Fusion ID : ";
@@ -71,13 +74,14 @@ function check_for_empty_fields($customer_name, $fusion_id, $open_date){
 	return $error_message;
 }
 
-function validate_form($customer_name, $fusion_id, $open_date){
-	$error_message = check_for_empty_fields($customer_name, $fusion_id, $open_date);
-
-	$sql = "SELECT id from case_details where fusion_id = '$fusion_id'";
-	$result= mysql_query($sql) or die(mysql_error());
-	if(mysql_num_rows($result) != 0)
-		$error_message .= " Fusion ID : " . $fusion_id . " already exists"; 
+function validate_form($customer_name, $fusion_id, $open_date, $campaign){
+	$error_message = check_for_empty_fields($customer_name, $fusion_id, $open_date, $campaign);
+	if($error_message == null){
+		$sql = "SELECT id from case_details where fusion_id = '$fusion_id'";
+		$result= mysql_query($sql) or die(mysql_error());
+		if(mysql_num_rows($result) != 0)
+			$error_message .= " Fusion ID : " . $fusion_id . " already exists"; 		
+	}
 	
 	return $error_message;
 }

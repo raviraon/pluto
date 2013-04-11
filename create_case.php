@@ -24,7 +24,7 @@ if( $_POST['submit'] ){
 	$comments = mysql_real_escape_string(stripslashes($_POST['comments']));
 	
 	$case = new CaseObj($campaign, $customer_name, $fusion_id, $open_date, $status, $closed_date, $comments);
-	$error_msg = validate_form($customer_name, $fusion_id, $open_date);
+	$error_msg = validate_form($customer_name, $fusion_id, $open_date, $campaign);
 	if($error_msg != NULL){
 		show_form($campaign, $customer_name, $fusion_id, $open_date, $status, $closed_date, $comments, $error_msg);
 	}	
