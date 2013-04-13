@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SMaC Case Tracker </title>
+<link rel="stylesheet" type="text/css" href="./css/view.css" media="all">
+<link rel="stylesheet" type="text/css" href="./css/default.include.css" media="all" />
+<link rel="stylesheet" type="text/css" href="./css/jquery-ui.css" media="all" />
+<link rel="stylesheet" href="./css/jquery-ui-1.8.4.custom.css" media="all" />
+<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="./js/jquery-ui.js"></script>
+<script type="text/javascript" src="./js/view.js"></script>
+
+<script>
+$(function() {
+	<?php
+		echo " var users = ". $users . ";\n";		
+	?>
+  $( "#new_case_owner" ).autocomplete({
+    source: users
+  });
+});
+</script>
+
+</head>
+<body id="main_body" >
+
+<?php require("header.html"); ?>
+
+	<div id="form_container">
+	
+		<form id="form_594016" class="appnitro" action="change_owner.php" method="post" >
+
+
+			<div style="padding-top:10px" class="form_description">
+				<h2>Change Case Owner</h2>
+			</div>						
+
+			<div id="error_message" > <?php echo $error_message; ?> </div>
+			
+		<ul>		
+			<li id="li_1" >
+				<label><b> Customer Name : </b> </label>
+				<label> <?php echo $customer_name; ?> </label>
+			</li>
+			<li/>		
+
+			<li id="li_2" >
+				<label> <b> Fusion ID : </b></label>
+				<label> <?php echo $fusion_id ?> </label>
+			</li>
+			<li/>
+		
+			<li id="li_3" >
+				<label><b> Current Case Owner : </b> </label>
+				<label> <?php echo $case_owner ?> </label>
+			</li>
+			<li/>
+
+			<li id="li_4" >
+			  <label for="new_case_owner"><b> New Case Owner : </b></label>
+			  <input id="new_case_owner" name="new_case_owner" />
+		  </li>
+		</ul>
+		<input type=hidden name="current_case_owner" value='<?php echo $case_owner; ?>'>
+		<input type=hidden name="customer_name" value='<?php echo $customer_name; ?>'>
+		<input type=hidden name="fusion_id" value='<?php echo $fusion_id; ?>'>
+
+
+		<div style="padding-top:50px">
+			<input  id="saveForm" class="button_text" type="submit" name="change_owner" value="Change Owner" />
+		</div>
+		
+		</form>	
+		
+		
+		<li/>
+	
+		<div id="footer">
+			Feedback :<a href="mailto:ravi_chandra@dell.com">mail me</a>
+		</div>
+	</div>
+<!-- <img id="bottom" src="./images/bottom.png" alt=""> -->
+</body>
+</html>
