@@ -6,6 +6,7 @@ require(__DIR__ . "/lib/dbconnect.php");
 require(__DIR__ . "/lib/utils.php");
 require(__DIR__ . "/case.php");
 
+print_r($_REQUEST);
 $db = new Database();
 $db->connect();
 
@@ -27,12 +28,14 @@ if($_POST['submit']) {
 		done($fusion_id);
 	}
 }
-
-if(!$_GET['case_id']) {
-	header("Location: home.php");	
+elseif(!$_POST['case_id']) {
+	go_to_home_page();
 }
-else{
-	$case_id = mysql_real_escape_string(stripslashes($_GET['case_id']));
+elseif($_POST['change_owner']){
+	echo "dsfdsfdsf";
+}
+elseif($_POST['edit_case']){
+	$case_id = mysql_real_escape_string(stripslashes($_POST['case_id']));
 	$sql = "SELECT id, fusion_id, campaign, customer_name, open_date, close_date, status, comments FROM case_details WHERE fusion_id = '$case_id'";
 	$result = mysql_query($sql) or die(mysql_error());
 	if(mysql_num_rows($result) != 0){
@@ -49,12 +52,19 @@ else{
 		require("./html/form.html");
 	}
 	else{
-		header("Location: home.php");	
+		go_to_home_page();
 	}
+}
+else{
+	go_to_home_page();
 }
 
 function show_form($campaign='', $customer_name='', $fusion_id='', $open_date='', $status='', $closed_date='', $comments='', $error_message='', $id=''){
 	require(__DIR__ . "/html/form.html");
+}
+
+function go_to_home_page(){
+	header("Location: home.php");		
 }
 
 function done($fusion_id){	

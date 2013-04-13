@@ -9,6 +9,18 @@
 <script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="./js/jquery-ui.js"></script>
 <script type="text/javascript" src="./js/view.js"></script>
+<style type="text/css" media="screen">
+input {
+  border: none;
+  background: none;
+  color: #00f;
+  text-decoration: underline;
+  cursor: pointer;
+  display: in-line;
+  margin: 0px;
+  padding: 0px;
+}
+</style>
 </head>
 <body id="main_body" >
 
@@ -24,6 +36,12 @@
 				<div id="error_message" > <?php echo $error_message; ?> </div>
 
 		  <ul >
+  			<li id="li_0" >
+  			<label><b> Case Owner : </b> </label>
+  			<label> <?php echo $case_owner ?> </label>
+  			</li>
+  			<li> </li>		
+
 			<li id="li_1" >
 			  <label> <b> Campaign :  </b> </label> 
 			  <label>  <?php echo $campaign ?> </label> 
@@ -67,9 +85,14 @@
 			<li> </li>	
 			
 		</form>	
-		<li> 
-			<a href='edit_case.php?case_id=<?php echo $case_id ?>' >Edit this case</a></li>	
-		<li> </li>	
+
+		<form id="edit_case" class="appnitro" action='edit_case.php' method="post" >
+			<input type="hidden" name="case_id" value='<?php echo $case_id ?>'>
+			<span style="padding-left:0px"><input type="submit" name="edit_case" value="Edit this case"/></span>
+			<span style="padding-left:50px"><input type="submit" name="change_owner" value="Change the owner of this case"/></span>
+		</form>
+
+		<li/>
 	
 		<div id="footer">
 			Feedback :<a href="mailto:ravi_chandra@dell.com">mail me</a>

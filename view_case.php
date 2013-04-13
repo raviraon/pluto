@@ -14,11 +14,12 @@ $db = new Database();
 $db->connect();
 $case_id = mysql_real_escape_string(stripslashes($_GET['case_id']));
 
-$sql = "SELECT fusion_id, campaign, customer_name, open_date, close_date, status, created_at, updated_at, comments FROM case_details WHERE fusion_id = '$case_id'";
+$sql = "SELECT owner_name, fusion_id, campaign, customer_name, open_date, close_date, status, created_at, updated_at, comments FROM case_details WHERE fusion_id = '$case_id'";
 
 $result = mysql_query($sql) or die(mysql_error());
 if(mysql_num_rows($result) != 0){
 	$row = mysql_fetch_object($result);
+	$case_owner = $row->owner_name;
 	$campaign = $row->campaign;
 	$customer_name = $row->customer_name;
 	$fusion_id = $row->fusion_id;
