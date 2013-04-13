@@ -39,18 +39,22 @@ if( $_POST['change_owner'] ){
 	}	
 	else{
 		update_case_owner($fusion_id, $case_owner, $new_case_owner, $new_case_owner_id);
-		// add_audit_trial($fusion_id, $case_owner, $new_case_owner);	
+		add_audit_trial($fusion_id, $case_owner, $new_case_owner);	
 		go_to_home_page();
 	}
 }
 
 function update_case_owner($fusion_id, $case_owner, $new_case_owner, $new_case_owner_id){
-echo	$sql = "UPDATE case_details SET owner_id=$new_case_owner_id ,owner_name='$new_case_owner' WHERE fusion_id='$fusion_id' AND owner_name='$case_owner' ";
+	$sql = "UPDATE case_details SET owner_id=$new_case_owner_id ,owner_name='$new_case_owner' WHERE fusion_id='$fusion_id' AND owner_name='$case_owner' ";
 	mysql_query($sql) or die(mysql_error());
 }
 
 function add_audit_trial($fusion_id, $case_owner, $new_case_owner){
-	return;
+	$user_id = $_SESSION['user_id'];
+	$user_name = $_SESSION['user'];
+	
+	$sql = "INSERT INTO audit_case_owner_change (fusion_id, old_case_owner, new_case_owner, updated_by_id, updated_by_name) VALUES('$fusion_id', '$case_owner', '$new_case_owner', $user_id, '$user_name')";
+	mysql_query($sql) or die(mysql_error());
 }
 
 function go_to_home_page(){
