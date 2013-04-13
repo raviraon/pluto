@@ -23,7 +23,6 @@ if( $_POST['submit'] ){
 	$closed_date = mysql_real_escape_string(stripslashes($_POST['close_date']));
 	$comments = mysql_real_escape_string(stripslashes($_POST['comments']));
 	
-	$case = new CaseObj($campaign, $customer_name, $fusion_id, $open_date, $status, $closed_date, $comments);
 	$error_msg = validate_form($customer_name, $fusion_id, $open_date, $campaign);
 	if($error_msg != NULL){
 		show_form($campaign, $customer_name, $fusion_id, $open_date, $status, $closed_date, $comments, $error_msg);

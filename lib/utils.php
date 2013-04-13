@@ -11,7 +11,7 @@ function save_form($campaign, $customer_name, $fusion_id, $open_date, $status, $
 		$closed_date = "'".$closed_date."'";
 	}
 	
-	$sql = "INSERT INTO case_details (user_id, user_name, campaign, customer_name, fusion_id, open_date, status, close_date, comments, updated_by) VALUES ($user_id, '$user_name', '$campaign', '$customer_name', '$fusion_id', '$open_date', '$status', $closed_date, '$comments', '$user_name')";
+	$sql = "INSERT INTO case_details (owner_id, owner_name, campaign, customer_name, fusion_id, open_date, status, close_date, comments, created_by) VALUES ($user_id, '$user_name', '$campaign', '$customer_name', '$fusion_id', '$open_date', '$status', $closed_date, '$comments', '$user_name')";
 	$result= mysql_query($sql) or die(mysql_error());
 }
 
@@ -36,6 +36,7 @@ function format_date($originalDate){
 	$formatted_date = date("d-m-Y", strtotime($originalDate));
 	return $formatted_date;
 }
+
 function update_form($campaign, $customer_name, $fusion_id, $open_date, $status, $closed_date, $comments, $id){
 	$user_name = $_SESSION["user"];
 	

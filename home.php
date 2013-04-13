@@ -11,7 +11,7 @@ $current_user_id = $_SESSION['user_id'];
 
 $db = new Database();
 $db->connect();
-$sql = "SELECT fusion_id, campaign, customer_name, open_date, close_date, status FROM case_details WHERE user_id = $current_user_id ORDER BY updated_at DESC";
+$sql = "SELECT fusion_id, campaign, customer_name, open_date, close_date, status FROM case_details WHERE owner_id = $current_user_id ORDER BY updated_at DESC";
 $result = mysql_query($sql) or die(mysql_error());
 show();
 
@@ -29,7 +29,6 @@ echo '			<table cellpadding="0" cellspacing="0" border="0" class="display" id="e
 <tbody>
 ';
 
-
 while($row = mysql_fetch_object($result)){
 	echo ' <tr class="odd gradeA"> ';
 	foreach($row as $key => $value){
@@ -46,6 +45,7 @@ while($row = mysql_fetch_object($result)){
 	}
 	echo "</tr>";
 }
+
 echo '</tbody></table></div></body>';
 
 function show($errors='', $cases=null){

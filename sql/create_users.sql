@@ -3,5 +3,6 @@ CREATE TABLE `users` (
 `username` varchar(65) NOT NULL default '',
 `password` varchar(65) NOT NULL default '',
 `region` varchar(65)  NULL default '',
-PRIMARY KEY (`id`)
+PRIMARY KEY (`id`),
+UNIQUE (username)
 ) ENGINE=MyISAM
