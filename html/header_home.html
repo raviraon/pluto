@@ -2,6 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <div id="header">
 	<img class="logo" src="./images/logo.png" alt="Dell">
+	<div style='text-align:right;padding-right:20px;color:BlanchedAlmond'>
+		Hello <span style="color:BlanchedAlmond"> <?php echo $_SESSION['user']; ?> </span>
+	</div>	
 	<ul id="navigation">
 		<li class="page_item page-item-6 current_page_item"><a href="home.php" title="Home">Home</a></li>
 		<li class="page_item page-item-91"><a href="create_case.php" title="Create Customer">Create Customer</a></li>
@@ -13,6 +16,7 @@
 			<label style='color:white'>Wiki Search</label> <br/>
 		</input>
 	</li>
+	
 </ul>
 </div>
 

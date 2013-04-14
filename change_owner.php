@@ -1,6 +1,6 @@
 <?php
-ini_set('display_errors',1); 
- error_reporting(E_ALL);
+// ini_set('display_errors',1); 
+//  error_reporting(E_ALL);
 
 ob_start();
 session_start();
@@ -8,7 +8,6 @@ require(__DIR__ . "/lib/check_user_logged_in.php");
 require(__DIR__ . "/lib/dbconnect.php");
 require(__DIR__ . "/case.php");
 require(__DIR__ . "/lib/utils.php");
-print_r($_POST);
 
 if(!$_POST['change_owner']) {
 	go_to_home_page();
@@ -23,21 +22,13 @@ if( $_POST['change_owner'] ){
     $customer_name = mysql_real_escape_string(stripslashes($_POST['customer_name']));
     $fusion_id = mysql_real_escape_string(stripslashes($_POST['fusion_id']));
 
-	$sql = "SELECT id FROM users WHERE username='$new_case_owner'";
-	$result = mysql_query($sql) or die(mysql_error());
-	$new_case_owner_id;
-	if(mysql_num_rows($result) == 1){
-		$row = mysql_fetch_row($result);
-		$new_case_owner_id = $row[0];
-	}	
-	else{
-		go_to_home_page();
-	}
 	$error_message = validate_change_owner_form($case_owner, $new_case_owner);
+
 	if($error_message != NULL){
 		require("./html/change_owner.html");	
 	}	
 	else{
+		$new_case_owner_id = get_new_case_owner_id($new_case_owner);
 		update_case_owner($fusion_id, $case_owner, $new_case_owner, $new_case_owner_id);
 		add_audit_trial($fusion_id, $case_owner, $new_case_owner);	
 		go_to_home_page();
@@ -69,9 +60,19 @@ function validate_change_owner_form($current_case_owner, $new_case_owner){
 
 	if($new_case_owner == $current_case_owner)
 		$error_message .= "New case owner and Current case owner cannot be same";
-
 	
-	return $error_message;
-	
+	return $error_message;	
 }
 
+function get_new_case_owner_id($new_case_owner){
+	$new_case_owner_id;	
+	$sql = "SELECT id FROM users WHERE username='$new_case_owner'";
+	$result = mysql_query($sql) or die(mysql_error());
+
+	if(mysql_num_rows($result) == 1){
+		$row = mysql_fetch_row($result);
+		return $row[0];
+	}	
+
+	go_to_home_page();	
+}

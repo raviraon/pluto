@@ -4,7 +4,7 @@
 session_start();
 require(__DIR__ . "/lib/check_user_logged_in.php");
 require(__DIR__ . "/lib/dbconnect.php");
-// require(__DIR__ . "/lib/utils.php");
+
 if(!$_POST['Change-Password']) {
 	show_change_password_form();
 	exit();
@@ -24,7 +24,7 @@ if( $_POST['Change-Password'] ){
 	}	
 	else{
 		update_password($new_password);
-		done();
+		logout();
 	}
 }
 
@@ -67,7 +67,7 @@ function show_change_password_form($error_msg=''){
 	require(__DIR__ . "/html/change_password.html");
 }
 
-function done(){
+function logout(){
 	$error_message='Successfully updated to new password';
 	header("Location: logout.php");	
 	
