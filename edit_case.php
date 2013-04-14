@@ -55,18 +55,6 @@ else{
 	go_to_home_page();
 }
 
-function show_form($campaign='', $customer_name='', $fusion_id='', $open_date='', $status='', $closed_date='', $comments='', $error_message='', $id=''){
-	require(__DIR__ . "/html/form.html");
-}
-
-function go_to_home_page(){
-	header("Location: home.php");		
-}
-
-function show_view_case_page($fusion_id){	
-	header("Location: view_case.php?case_id=$fusion_id");	
-}
-
 function fetch_case_details(){
 	$case_id = mysql_real_escape_string(stripslashes($_POST['case_id']));
 	$sql = "SELECT id, fusion_id, campaign, customer_name, open_date, close_date, status, comments, owner_name FROM case_details WHERE fusion_id = '$case_id'";
@@ -100,7 +88,6 @@ function show_change_owner_page($result){
 	$comments = $row->comments;
 	$case_owner = $row->owner_name;
 	$id = $row->id;
-
 	$users = get_all_users();
 	$users = json_encode($users);
 	
@@ -115,3 +102,16 @@ function get_all_users(){
 	}	
 	return $users;
 }
+
+function show_form($campaign='', $customer_name='', $fusion_id='', $open_date='', $status='', $closed_date='', $comments='', $error_message='', $id=''){
+	require(__DIR__ . "/html/form.html");
+}
+
+function go_to_home_page(){
+	header("Location: home.php");		
+}
+
+function show_view_case_page($fusion_id){	
+	header("Location: view_case.php?case_id=$fusion_id");	
+}
+
