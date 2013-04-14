@@ -11,6 +11,8 @@ if(!$_GET['search']) {
 $db = new Database();
 $db->connect();
 $search_criteria = mysql_real_escape_string(stripslashes($_GET['search']));
+$search_criteria = utf8_urldecode($search_criteria);
+
 $is_wiki = mysql_real_escape_string(stripslashes($_GET['wiki']));
 $columns_to_load = '';
 
@@ -53,4 +55,8 @@ function show_home_page($errors='', $cases=null){
 	require('./html/home.html');
 }
 
+function utf8_urldecode($str) {
+    $str = preg_replace("/%u([0-9a-f]{3,4})/i","&#x\\1;",urldecode($str));
+    return html_entity_decode($str,null,'UTF-8');;
+  }
 ?>
