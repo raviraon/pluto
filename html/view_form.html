@@ -86,12 +86,7 @@
 			
 		</form>	
 
-		<form id="edit_case" class="appnitro" action='edit_case.php' method="post" >
-			<input type="hidden" name="case_id" value='<?php echo $case_id ?>'>
-			<span style="padding-left:0px"><input class='buttonAsLink' type="submit" name="edit_case" value="Edit this case"/></span>
-			<span style="padding-left:50px"><input class='buttonAsLink' type="submit" name="change_owner" value="Change the owner of this case"/></span>
-		</form>
-
+		<?php echo $edit_form; ?>
 		<li/>
 	
 		<div id="footer">

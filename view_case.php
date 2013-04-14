@@ -1,4 +1,7 @@
 <?php
+// ini_set('display_errors',1); 
+//  error_reporting(E_ERROR);
+
 ob_start();
 session_start();
 require(__DIR__ . "/lib/check_user_logged_in.php");
@@ -29,6 +32,19 @@ if(mysql_num_rows($result) != 0){
 	$created_at = $row->created_at;
 	$updated_at = $row->updated_at;
 	$comments = $row->comments;
+	$edit_form ='';
+	
+	if(case_editable($updated_at, $status)){
+		$edit_form = "
+			<form id='edit_case' class='appnitro' action='edit_case.php' method='post' >
+				<input type='hidden' name='case_id' value='$case_id'>
+				<span style='padding-left:0px'><input class='buttonAsLink' type='submit' name='edit_case' value='Edit this case'/></span>
+				<span style='padding-left:50px'><input class='buttonAsLink' type='submit' name='change_owner' value='Change the owner of this case'/></span>
+			</form>";
+	}
+	else{
+		$edit_form = '<div id="error_message" > This case cannot be modified as its been closed for 10 or more days </div>';		
+	}
 	
 	require("./html/view_form.html");
 }
@@ -37,4 +53,13 @@ else{
 }
 
 
-
+function case_editable($updated_at, $status){
+	if($status == "Pend Working"){
+		return true;
+	}
+	
+	$last_updated = date_create($updated_at);
+	$today = date_create(date("Y-m-d"));
+	$interval = date_diff($today, $last_updated);
+	return $interval->days < 11;
+}

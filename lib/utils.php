@@ -87,7 +87,7 @@ function validate_form($customer_name, $fusion_id, $open_date, $campaign){
 	return $error_message;
 }
 
-function validate_for_during_update($customer_name, $fusion_id, $open_date, $case_unique_id, $campaign){
+function validate_form_during_update($customer_name, $fusion_id, $open_date, $case_unique_id, $campaign){
 	$error_message = check_for_empty_fields($customer_name, $fusion_id, $open_date, $campaign);
 
 	$sql = "SELECT id from case_details where fusion_id = '$fusion_id' AND id != $case_unique_id";
