@@ -14,9 +14,9 @@ $search_criteria = mysql_real_escape_string(stripslashes($_GET['search']));
 $is_wiki = mysql_real_escape_string(stripslashes($_GET['wiki']));
 $columns_to_load = '';
 
-if(strlen($search_criteria) < 3){
-	header("Location: home.php");		
-}
+// if(strlen($search_criteria) < 3){
+// 	header("Location: home.php");		
+// }
 
 if($is_wiki == 'true'){
 	$columns_to_load = array("name", "description", "data");

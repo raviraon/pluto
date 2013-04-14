@@ -22,7 +22,7 @@ function search_cases($search_criteria='', $is_wiki='false' , $colums_to_load=''
 		$sql = "SELECT $columns FROM wiki WHERE name LIKE '%$search_criteria%' ORDER BY name";		
 	}
 	else{
-		$sql = "SELECT $columns FROM case_details WHERE fusion_id LIKE '%$search_criteria%' OR customer_name LIKE '%$search_criteria%' ORDER BY updated_at DESC";
+		$sql = "SELECT $columns FROM case_details WHERE fusion_id LIKE '%$search_criteria%' OR customer_name LIKE '%$search_criteria%' ORDER BY updated_at DESC LIMIT 300";
 	}
 	
 	$result = mysql_query($sql) or die(mysql_error());
