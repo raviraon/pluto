@@ -11,9 +11,28 @@
 	<script type="text/javascript" src="./js/view.js"></script>
 	<script>
 	$(function() {
-		$( "#open_date_picker" ).datepicker({ dateFormat: "yy-mm-dd" });
-		$( "#close_date_picker" ).datepicker({ dateFormat: "yy-mm-dd" });
-	});
+		$( "#open_date_picker" ).datepicker({ 
+			dateFormat: "yy-mm-dd",
+			showButtonPanel: true,
+			closeText: 'Clear', // Text to show for "close" button
+            onClose: function () {
+                if ($(window.event.srcElement).hasClass('ui-datepicker-close')) {
+                    $(this).val('');
+                }
+            } 
+		});
+		
+		$( "#close_date_picker" ).datepicker({ 
+			dateFormat: "yy-mm-dd",
+			showButtonPanel: true,
+			closeText: 'Clear', // Text to show for "close" button
+            onClose: function () {
+                if ($(window.event.srcElement).hasClass('ui-datepicker-close')) {
+                    $(this).val('');
+                }
+            }
+		});
+	});	
 	</script>
 </head>
 <body id="main_body" >
