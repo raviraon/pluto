@@ -32,7 +32,9 @@ show_home_page();
 
 echo '<table cellpadding="0" cellspacing="0" border="0" class="display" id="example" width="100%"> <thead> <tr>';
 foreach($columns_to_load as $column ){
-	echo "	<th> $column </th>	";
+	$column = str_replace("_", " ", $column);
+	$column = ucwords(strtolower($column));
+	echo "	<th> $column  </th>	";
 }
 					
 echo '</tr></thead><tbody>';
