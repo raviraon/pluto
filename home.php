@@ -43,7 +43,13 @@ while($row = mysql_fetch_object($result)){
 	echo "</tr>";
 }
 
-echo '</tbody></table></div></body>';
+echo '</tbody></table></div>
+
+<div style="text-align:right;padding-right:20px;color:BlanchedAlmond">
+<a href="mailto:ravi_chandra@dell.com?Subject=Request%20Report%20/%20Submit%20Wiki%20Link%20/%20Feedback&Body=***What%20would%20you%20like%20to%20do%3F***%3A%20%0A%20%0A1%3ERequest%20report%20from%3A%20DD/MM/YYYY%20to%20DD/MM/YYYY.%20%0A%0A2%3EI%20would%20like%20to%20add%20a%20Link%20to%20Wiki%3A%20%0AName%3A%20%0AFor%20Region%3A%0ALanding%20URL%3A%20%0A%0A3%3EFeedback%3A%20%0A">Request Report / Submit Wiki Link / Feedback</a>
+</div>
+
+</body>';
 
 function show_home_page($errors='', $cases=null){
 	require('./html/home.html');

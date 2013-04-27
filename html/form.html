@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>SMaC Case Tracker</title>
+	<title>:::SMaC Case Tracker:::</title>
 	<link rel="stylesheet" type="text/css" href="./css/view.css" media="all">
 	<link rel="stylesheet" type="text/css" href="./css/default.include.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="./css/jquery-ui.css" media="all" />
@@ -22,7 +22,7 @@
 
 	<div id="form_container">	
 		<form id="form_594016" class="appnitro"  method="post" >
-			<div class="form_description"> </div>						
+			<div class="form_description"> </div>
 			<div id="error_message" > <?php echo $error_message; ?> </div>
 
 			<ul >
@@ -34,6 +34,9 @@
 							<option  value="Facebook" 
 								<?php if(isset($campaign) && $campaign == 'Facebook'){ echo "selected=selected"; }?>
 							>Facebook</option>
+							<option value="@DellCares"  								
+								<?php if(isset($campaign) && $campaign == '@DellCares'){ echo "selected=selected"; } ?> 
+							>@DellCares</option>
 							<option value="Twitter"  								
 								<?php if(isset($campaign) && $campaign == 'Twitter'){ echo "selected=selected"; } ?> 
 							>Twitter</option>
@@ -43,26 +46,26 @@
 							<option value="Other SM Sites"  								
 								<?php if(isset($campaign) && $campaign == 'Other SM Sites'){ echo "selected=selected"; } ?> 
 							>Other SM Sites</option>
-							<option  value="EMEA-DPS-Proj" 
-								<?php if(isset($campaign) && $campaign == 'EMEA-DPS-Proj'){ echo "selected=selected"; }?>
-							>EMEA-DPS-Proj</option>
+							<option  value="Dispatch Project" 
+								<?php if(isset($campaign) && $campaign == 'Dispatch Project'){ echo "selected=selected"; }?>
+							>Dispatch Project</option>
 						</select>
 					</div> 
 				</li>
-
+				
 				<li id="li_1" >
-					<label class="description" for="cust_name">Customer Name* </label>
-					<div>
-						<input id="cust_name" name="cust_name" class="element text medium" type="text" maxlength="255" 
-												value="<?php echo $customer_name;?>"/> 
-					</div> 
-				</li>
-		
-				<li id="li_2" >
 					<label class="description" for="fusion_id">Fusion ID* </label>
 					<div>
 						<input id="fusion_id" name="fusion_id" class="element text medium" type="text" maxlength="255" 
 												value="<?php echo $fusion_id; ?>"/> 
+					</div> 
+				</li>
+
+				<li id="li_2" >
+					<label class="description" for="cust_name">Customer Name/Twitter Handle/User ID* </label>
+					<div>
+						<input id="cust_name" name="cust_name" class="element text medium" type="text" maxlength="255" 
+												value="<?php echo $customer_name;?>"/> 
 					</div> 
 				</li>
 		
@@ -118,7 +121,7 @@
 			</ul>
 		</form>	
 		<div id="footer">
-			Feedback :<a href="mailto:ravi_chandra@dell.com">mail me</a>
+
 		</div>
 	</div>
 	<img id="bottom" src="./images/bottom.png" alt="">
