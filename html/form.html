@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>:::SMaC Case Tracker:::</title>
+	<title>Pluto - Submit Incident</title>
 	<link rel="stylesheet" type="text/css" href="./css/view.css" media="all">
 	<link rel="stylesheet" type="text/css" href="./css/default.include.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="./css/jquery-ui.css" media="all" />
@@ -65,6 +65,9 @@
 							<option value="Other SM Sites"  								
 								<?php if(isset($campaign) && $campaign == 'Other SM Sites'){ echo "selected=selected"; } ?> 
 							>Other SM Sites</option>
+							<option  value="Q&A/R&R" 
+								<?php if(isset($campaign) && $campaign == 'Q&A/R&R'){ echo "selected=selected"; }?>
+							>Q&A/R&R</option>
 							<option  value="Dispatch Project" 
 								<?php if(isset($campaign) && $campaign == 'Dispatch Project'){ echo "selected=selected"; }?>
 							>Dispatch Project</option>

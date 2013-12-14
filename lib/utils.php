@@ -56,13 +56,13 @@ function check_for_empty_fields($customer_name, $fusion_id, $open_date, $campaig
     $error_message = NULL;
 	
 	if($customer_name == NULL)
-		$error_message .= "Customer Name : ";
+		$error_message .= "Campaign : ";
 
 	if($campaign == NULL)
-		$error_message .= "Campaign : ";
+		$error_message .= "Fusion ID : ";
 	
 	if($fusion_id == NULL)
-		$error_message .= "Fusion ID : ";
+		$error_message .= "Customer Name : ";
 
 	if($open_date == NULL)
 		$error_message .= "Open Date  ";
