@@ -18,7 +18,7 @@ if($_POST['submit']) {
 	$comments = mysql_real_escape_string(stripslashes($_POST['comments']));
 	$case_unique_id = mysql_real_escape_string(stripslashes($_POST['case_unique_id']));
 
-	$error_msg = validate_form_during_update($customer_name, $fusion_id, $open_date, $case_unique_id, $campaign);
+	$error_msg = validate_form_during_update($customer_name, $fusion_id, $open_date, $case_unique_id, $campaign, $status, $closed_date);
 
 	if($error_msg != NULL){
 		show_form($campaign, $customer_name, $fusion_id, $open_date, $status, $closed_date, $comments, $error_msg, $case_unique_id);

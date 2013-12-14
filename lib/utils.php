@@ -52,7 +52,7 @@ function update_form($campaign, $customer_name, $fusion_id, $open_date, $status,
 }
 
 
-function check_for_empty_fields($customer_name, $fusion_id, $open_date, $campaign){
+function check_for_empty_fields($customer_name, $fusion_id, $open_date, $campaign, $status, $closed_date){
     $error_message = NULL;
 	
 	if($customer_name == NULL)
@@ -65,7 +65,11 @@ function check_for_empty_fields($customer_name, $fusion_id, $open_date, $campaig
 		$error_message .= "Customer Name : ";
 
 	if($open_date == NULL)
-		$error_message .= "Open Date  ";
+		$error_message .= "Open Date : ";
+	
+	if($status != "Pend Working" && $closed_date == NULL ){
+		$error_message .= "Close Date : ";
+	}
 	
 	if($error_message != NULL){
 		$error_message .= " cannot be empty. ";
@@ -75,8 +79,8 @@ function check_for_empty_fields($customer_name, $fusion_id, $open_date, $campaig
 	return $error_message;
 }
 
-function validate_form($customer_name, $fusion_id, $open_date, $campaign){
-	$error_message = check_for_empty_fields($customer_name, $fusion_id, $open_date, $campaign);
+function validate_form($customer_name, $fusion_id, $open_date, $campaign, $status, $closed_date){
+	$error_message = check_for_empty_fields($customer_name, $fusion_id, $open_date, $campaign, $status, $closed_date);
 	if($error_message == null){
 		$sql = "SELECT id from case_details where fusion_id = '$fusion_id'";
 		$result= mysql_query($sql) or die(mysql_error());
@@ -87,8 +91,8 @@ function validate_form($customer_name, $fusion_id, $open_date, $campaign){
 	return $error_message;
 }
 
-function validate_form_during_update($customer_name, $fusion_id, $open_date, $case_unique_id, $campaign){
-	$error_message = check_for_empty_fields($customer_name, $fusion_id, $open_date, $campaign);
+function validate_form_during_update($customer_name, $fusion_id, $open_date, $case_unique_id, $campaign, $status, $closed_date){
+	$error_message = check_for_empty_fields($customer_name, $fusion_id, $open_date, $campaign, $status, $closed_date);
 
 	$sql = "SELECT id from case_details where fusion_id = '$fusion_id' AND id != $case_unique_id";
 	$result= mysql_query($sql) or die(mysql_error());
