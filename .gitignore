@@ -1,2 +1,5 @@
 .DS_Store
 tmtags
+aspnet_client
+App_Data
+web.config
