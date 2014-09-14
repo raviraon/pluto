@@ -49,7 +49,7 @@ function add_audit_trial($fusion_id, $case_owner, $new_case_owner){
 }
 
 function go_to_home_page(){
-	header("Location: home.php");	
+	header("Location: home.php");
 }
 
 function validate_change_owner_form($current_case_owner, $new_case_owner){

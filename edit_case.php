@@ -112,6 +112,6 @@ function go_to_home_page(){
 }
 
 function show_view_case_page($fusion_id){	
-	header("Location: view_case.php?case_id=$fusion_id");	
+	header("Location: home.php");	
 }
 

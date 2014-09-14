@@ -38,8 +38,8 @@ if(mysql_num_rows($result) != 0){
 		$edit_form = "
 			<form id='edit_case' class='appnitro' action='edit_case.php' method='post' >
 				<input type='hidden' name='case_id' value='$case_id'>
-				<span style='padding-left:0px'><input class='buttonAsLink' type='submit' name='edit_case' value='Edit this case'/></span>
-				<span style='padding-left:50px'><input class='buttonAsLink' type='submit' name='change_owner' value='Change the owner of this case'/></span>
+				<span style='padding-left:0px'><input class='button' type='submit' name='edit_case' value='Edit Case'/></span>
+				<span style='padding-left:50px'><input class='button' type='submit' name='change_owner' value='Change Case Owner'/></span>
 			</form>";
 	}
 	else{
