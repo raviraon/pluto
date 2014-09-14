@@ -33,14 +33,14 @@ if(mysql_num_rows($result) != 0){
 	$updated_at = $row->updated_at;
 	$comments = $row->comments;
 	$edit_form ='';
+	$owner_id = $row->owner_id;
 	$user_id = $_SESSION['user_id'];
 
-	if(is_owner($row->owner_id, $user_id ))
+	if(is_owner($owner_id, $user_id ))
 	{
 		if(case_editable($updated_at, $status)){
 			$edit_form = "
 				<form id='edit_case' class='appnitro' action='edit_case.php' method='post' >
-					<input type='hidden' name='case_id' value='$case_id'>
 					<span style='padding-left:0px'><input class='button' type='submit' name='edit_case' value='Edit Case'/></span>
 					<span style='padding-left:50px'><input class='button' type='submit' name='change_owner' value='Change Case Owner'/></span>
 				</form>";
@@ -49,6 +49,18 @@ if(mysql_num_rows($result) != 0){
 			$edit_form = '<div id="error_message" > This case cannot be modified as its been closed for 10 or more days </div>';
 		}
 	}
+	else{
+		$edit_form = "
+			<form id='edit_case' class='appnitro' action='edit_case.php' method='post' >
+				<span style='padding-left:50px'><input class='button' type='submit' name='change_owner' value='Change Case Owner'/></span>
+			</form>";
+	}
+
+	if(isset($_SESSION['case_id'])){
+		unset($_SESSION['case_id']);
+	}
+
+    $_SESSION['case_id'] = $case_id;
 	require("./html/view_form.html");
 }
 else{

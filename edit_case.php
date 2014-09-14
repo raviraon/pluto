@@ -56,7 +56,7 @@ else{
 }
 
 function fetch_case_details(){
-	$case_id = mysql_real_escape_string(stripslashes($_POST['case_id']));
+	$case_id = $_SESSION['case_id'];
 	$sql = "SELECT id, fusion_id, campaign, customer_name, open_date, close_date, status, comments, owner_name FROM case_details WHERE fusion_id = '$case_id'";
 	
 	$result = mysql_query($sql) or die(mysql_error());

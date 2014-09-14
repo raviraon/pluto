@@ -6,6 +6,11 @@ require(__DIR__ . "/lib/utils.php");
 
 $db = new Database();
 $db->connect();
+
+if(isset($_SESSION['case_id'])){
+	unset($_SESSION['case_id']);
+}
+
 $current_user_id = $_SESSION['user_id'];
 $sql = "SELECT fusion_id, campaign, customer_name, open_date, close_date, status FROM case_details WHERE owner_id = $current_user_id ORDER BY updated_at DESC LIMIT 600";
 
