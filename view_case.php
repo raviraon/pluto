@@ -17,7 +17,7 @@ $db = new Database();
 $db->connect();
 $case_id = mysql_real_escape_string(stripslashes($_GET['case_id']));
 
-$sql = "SELECT owner_name, fusion_id, campaign, customer_name, open_date, close_date, status, created_at, updated_at, comments FROM case_details WHERE fusion_id = '$case_id'";
+$sql = "SELECT owner_id, owner_name, fusion_id, campaign, customer_name, open_date, close_date, status, created_at, updated_at, comments FROM case_details WHERE fusion_id = '$case_id'";
 
 $result = mysql_query($sql) or die(mysql_error());
 if(mysql_num_rows($result) != 0){
@@ -35,18 +35,20 @@ if(mysql_num_rows($result) != 0){
 	$edit_form ='';
 	$user_id = $_SESSION['user_id'];
 
-	if(is_owner($row->owner_id, $user_id ) && case_editable($updated_at, $status)){
-		$edit_form = "
-			<form id='edit_case' class='appnitro' action='edit_case.php' method='post' >
-				<input type='hidden' name='case_id' value='$case_id'>
-				<span style='padding-left:0px'><input class='button' type='submit' name='edit_case' value='Edit Case'/></span>
-				<span style='padding-left:50px'><input class='button' type='submit' name='change_owner' value='Change Case Owner'/></span>
-			</form>";
+	if(is_owner($row->owner_id, $user_id ))
+	{
+		if(case_editable($updated_at, $status)){
+			$edit_form = "
+				<form id='edit_case' class='appnitro' action='edit_case.php' method='post' >
+					<input type='hidden' name='case_id' value='$case_id'>
+					<span style='padding-left:0px'><input class='button' type='submit' name='edit_case' value='Edit Case'/></span>
+					<span style='padding-left:50px'><input class='button' type='submit' name='change_owner' value='Change Case Owner'/></span>
+				</form>";
+		}
+		else{
+			$edit_form = '<div id="error_message" > This case cannot be modified as its been closed for 10 or more days </div>';
+		}
 	}
-	else{
-		$edit_form = '<div id="error_message" > This case cannot be modified as its been closed for 10 or more days </div>';		
-	}
-	
 	require("./html/view_form.html");
 }
 else{
@@ -54,7 +56,7 @@ else{
 }
 
 function is_owner($owner_id, $user_id){
-	return $owner_id == $user_id;
+	return strval($owner_id) == strval($user_id);
 }
 
 function case_editable($updated_at, $status){
