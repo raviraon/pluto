@@ -28,9 +28,6 @@ if($_POST['submit']) {
 		show_view_case_page($fusion_id);
 	}
 }
-elseif(!$_POST['case_id']) {
-	go_to_home_page();
-}
 elseif($_POST['change_owner']){
 	$result = fetch_case_details();
 
