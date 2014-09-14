@@ -33,8 +33,9 @@ if(mysql_num_rows($result) != 0){
 	$updated_at = $row->updated_at;
 	$comments = $row->comments;
 	$edit_form ='';
-	
-	if(case_editable($updated_at, $status)){
+	$user_id = $_SESSION['user_id'];
+
+	if(is_owner($row->owner_id, $user_id ) && case_editable($updated_at, $status)){
 		$edit_form = "
 			<form id='edit_case' class='appnitro' action='edit_case.php' method='post' >
 				<input type='hidden' name='case_id' value='$case_id'>
@@ -52,6 +53,9 @@ else{
 	header("Location: home.php");	
 }
 
+function is_owner($owner_id, $user_id){
+	return $owner_id == $user_id;
+}
 
 function case_editable($updated_at, $status){
 	if($status == "Pend Working"){
