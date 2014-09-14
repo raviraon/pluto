@@ -35,7 +35,7 @@ while($row = mysql_fetch_object($result)){
 	echo ' <tr class="odd gradeA"> ';
 	foreach($row as $key => $value){
 		if($key == 'fusion_id'){		
-			echo "<td> <a href='view_case.php?case_id=$value'> $value </a> </td>";	
+			echo "<td> <a href='view_case.php?case_id=$value'> $value </a> - <a href='https://fusion.us.dell.com/Fusion/Core/preview.aspx?id=$value' target='_blank'> Preview </a></td>";
 		}
 		elseif( $key == 'open_date' || $key == 'closed_date'){
 			$formatted_date = format_date($value);
